@@ -19,5 +19,3 @@ set -gx PATH \$PATH ~/pebble-dev/pebble-sdk-4.3-mac/bin:$PATH
 
 export GOPATH=$HOME/work
 export EDITOR=/usr/local/bin/mvim
-
-fortune

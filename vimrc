@@ -34,7 +34,7 @@ filetype on
 filetype plugin on           " required
 filetype indent on
 
-set shell=bash
+set shell=/usr/local/bin/fish
 set path+=**
 
 let mapleader = "\<Space>"
