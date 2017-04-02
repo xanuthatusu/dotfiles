@@ -133,9 +133,10 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide = netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
 "color molokai
 "let g:molokai_original = 1
+color solarized
 set background=dark
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 set shortmess+=c

@@ -20,4 +20,4 @@
 [difftool]
 	prompt = false
 [core]
-	editor = $EDITOR
+	editor = $EDITOR -f
