@@ -1,0 +1,23 @@
+[push]
+	default = simple
+[user]
+	name = Xanuthatusu
+	email = anthony@rocketmade.com
+	signingkey = 06c3a6b3
+[commit]
+	gpgsign = true
+[alias]
+	s = status -sb
+	branches = branch -a --color
+	unstage = reset HEAD --
+	undo-commit = reset --soft HEAD^
+	hash = rev-parse HEAD
+	graphlog = log --graph --pretty=oneline --abbrev-commit\n
+	prune-local = !git branch --merged origin/dev | grep -v HEAD | xargs git branch -d
+	dev = !git fetch origin && git checkout origin/dev
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[core]
+	editor = $EDITOR

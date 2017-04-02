@@ -1,0 +1,35 @@
+{
+	"motd": {},
+	"motd.fetched": 1481050620037,
+	"analytics-uuid": "fa0818e3-946c-4164-9fc4-5286319b287d",
+	"usage": true,
+	"user": {
+		"iss": "accounts.google.com",
+		"iat": 1480968454,
+		"exp": 1480972054,
+		"at_hash": "GyN_vNblDNl5Jgt99SXLzw",
+		"aud": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"sub": "114025398254143439882",
+		"email_verified": true,
+		"azp": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"hd": "rocketmade.com",
+		"email": "anthony@rocketmade.com"
+	},
+	"tokens": {
+		"expires_at": 1481062920927,
+		"refresh_token": "1/0ytdeQkDnlXkEMf7OjQVb9FaX0ZHd0yfb5spy8d6bY8",
+		"scopes": [
+			"email",
+			"https://www.googleapis.com/auth/cloudplatformprojects.readonly",
+			"https://www.googleapis.com/auth/firebase",
+			"openid"
+		],
+		"access_token": "ya29.GlysA9ZM1-lng4OS_X4dfOd26SQajjCW9xz4ru5_D8cw9vC17SuRgvN5yg42RyBpexrHFNfbu_54XAlOZvecG1y6Z1Sriyn8ADHpKUWfAs9HnyrJ3BO4JlfCLpQYAA",
+		"token_type": "Bearer",
+		"expires_in": 3600,
+		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImNkNjRhZDUwMTUxZjZhYzQ5YWRhMzNiODQ0Mjc0NTI0ZDdiMTk4MTIifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiaWF0IjoxNDgxMDU5MzIwLCJleHAiOjE0ODEwNjI5MjAsImF0X2hhc2giOiJwQUgzX0R6N2JKUXFQUE94aVktOVlRIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE0MDI1Mzk4MjU0MTQzNDM5ODgyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF6cCI6IjU2MzU4NDMzNTg2OS1mZ3JoZ21kNDdicW5la2lqNWk4YjVwcjAzaG84NDllNi5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImhkIjoicm9ja2V0bWFkZS5jb20iLCJlbWFpbCI6ImFudGhvbnlAcm9ja2V0bWFkZS5jb20ifQ.okdzuu3pmmgIdXYny58LSDBUyMX6j8I5iPG8Fhyh3TMqm1tpZsfz6b0ppeTV1GwESRr5CWAxgRD9TN1qxELI1piZ17XYoB205AoHwcIS-Op1ObFJDxl6q0mJFjJa3zuyCDHKikNA0g5p5mVGyc2QgZfjSyt7ReCMTyjeFECw2a5p_QD1H2sUwIXPqYdvCKFddH4n_vj1XVWWj8akLUpfeT6pgpE_7WOahfk5VX3utM9AYptjzgltdpm1zTGZGgCpMmMeu9N_wNizzikiSpVyxJlOealZ6R9SX4eLJ3nBY27kSXNlEacRboZmGSrFe9lHnlEST6vJzJX6xev5YicXrg"
+	},
+	"activeProjects": {
+		"/Users/anthony/polymer/personal": "personal"
+	}
+}

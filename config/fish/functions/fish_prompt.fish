@@ -1,0 +1,1 @@
+/Users/anthony/.config/fisherman/agnoster/fish_prompt.fish
