@@ -12,7 +12,7 @@
 	unstage = reset HEAD --
 	undo-commit = reset --soft HEAD^
 	hash = rev-parse HEAD
-	graphlog = log --graph --pretty=oneline --abbrev-commit\n
+	graphlog = log --all --decorate --oneline --graph --abbrev-commit\n
 	prune-local = !git branch --merged origin/dev | grep -v HEAD | xargs git branch -d
 	dev = !git fetch origin && git checkout origin/dev
 [diff]
@@ -21,3 +21,4 @@
 	prompt = false
 [core]
 	editor = $EDITOR -f
+	pager = diff-so-fancy | less --tabs=4 -RFX
