@@ -1,0 +1,24 @@
+source ~/.antigenrc
+
+ENABLE_CORRECTION="true"
+
+alias spotify="LD_PRELOAD=/usr/lib/libcurl.so.3:~/.config/spotifywm.so /usr/share/spotify/spotify &"
+alias vim="nvim"
+alias git="hub"
+alias up="cd ../"
+
+alias rangercd="ranger --choosedir=$HOME/.config/rangerdir; cd $(cat $HOME/.config/rangerdir)"
+
+source /etc/environment
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR="nvim"
+
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/heroku/bin:$PATH
+export PATH=/home/anthony/.config/nvim/plugged/vim-live-latex-preview/bin:$PATH
+
+[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
+source /usr/share/nvm/init-nvm.sh
+
+source ~/.antigen/bundles/Valiev/almostontop/almostontop.plugin.zsh
