@@ -1,5 +1,0 @@
-folder-hook 'account.com.gmail.pategeorge12' 'source ~/.mutt/account.com.gmail.pategeorge12'
-
-source ~/.mutt/account.com.gmail.pategeorge12
-
-set sort=reverse-date

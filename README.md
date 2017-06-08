@@ -1,3 +1,4 @@
 Dotfiles
 ========
-These are my dotfiles
+
+These are the dotfiles for my arch config.
