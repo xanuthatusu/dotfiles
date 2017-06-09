@@ -2,6 +2,12 @@ source ~/.antigenrc
 
 ENABLE_CORRECTION="true"
 
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs os_icon time)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
 alias spotify="LD_PRELOAD=/usr/lib/libcurl.so.3:~/.config/spotifywm.so /usr/share/spotify/spotify &"
 alias vim="nvim"
 alias git="hub"
@@ -22,3 +28,10 @@ export PATH=/home/anthony/.config/nvim/plugged/vim-live-latex-preview/bin:$PATH
 source /usr/share/nvm/init-nvm.sh
 
 source ~/.antigen/bundles/Valiev/almostontop/almostontop.plugin.zsh
+
+source ~/.fonts/*.sh
+
+function mkcd () {
+    mkdir $1
+    cd $1
+}
