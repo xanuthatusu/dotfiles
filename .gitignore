@@ -16,6 +16,7 @@ config/nvim/.netrwhist
 config/nvim/plugged/
 config/pulse
 config/qalculate
+config/ranger/bookmarks
 config/Slack
 config/spotify
 config/Trolltech.conf
