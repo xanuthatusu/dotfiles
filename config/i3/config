@@ -56,7 +56,7 @@ font pango:System San Francisco Display 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return    exec termite
+bindsym $mod+Return    exec --no-startup-id termite
 
 # Key bindings
 
@@ -75,24 +75,26 @@ bindsym $mod+Shift+r   restart
 #bindsym $mod+t
 #bindsym $mod+Shift+t
 
-bindsym $mod+y resize shrink width 20 px or 1 ppt
+bindsym $mod+y resize shrink width 20 px or 5 ppt
 #bindsym $mod+Shift+y resize shrink width 20 px or 20 ppt
 
-bindsym $mod+u resize grow height 20 px or 1 ppt
+bindsym $mod+u resize grow height 20 px or 5 ppt
 #bindsym $mod+Shift+u
 
-bindsym $mod+i resize shrink height 20 px or 1 ppt
+bindsym $mod+i resize shrink height 20 px or 5 ppt
 #bindsym $mod+Shift+i
 
-bindsym $mod+o resize grow width 20 px or 1 ppt
+bindsym $mod+o resize grow width 20 px or 5 ppt
 #bindsym $mod+Shift+o
 
-#bindsym $mod+p
-#bindsym $mod+Shift+p
+bindsym $mod+p         gaps inner all set 0
+bindsym $mod+Shift+p   gaps inner all set 10
 
-bindsym $mod+a exec $term -e qalc
-#bindsym $mod+Shift+a
+bindsym $mod+a         exec $term -e qalc
+#bindsym $mod+Shift+a   floating enable; resize set 320 px 180 px; sticky enable; move window to position 1045 px 0 px
 
+bindsym $mod+g exec $term -e /home/anthony/.screenlayout/regular.sh
+bindsym $mod+Shift+g exec $term -e /home/anthony/.screenlayout/work.sh
 
 bindsym $mod+m         move workspace to output right
 bindsym $mod+Shift+m   move workspace to output left
@@ -102,13 +104,8 @@ bindsym $mod+Left move left 20px
 bindsym $mod+Right move right 20px
 bindsym $mod+Down move down 20px
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 100 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+# start rofi (an alternative to dmenu: a program launcher)
 bindsym $mod+d exec rofi -show run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -145,13 +142,13 @@ bindsym $mod+space focus mode_toggle
 #bindsym $mod+d focus child
 
 set $workspace1 "1 "
-set $workspace2 "2 "
+set $workspace2 "2 "
 set $workspace3 "3 "
 set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 ?"
 set $workspace7 "7 ?"
-set $workspace8 "8 ?"
+set $workspace8 "8 "
 set $workspace9 "9 "
 set $workspace10 "10 "
 
@@ -228,8 +225,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% &&
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec ~/.config/i3/toggletouchpad.sh # toggle touchpad
@@ -245,12 +242,12 @@ exec_always --no-startup-id feh --bg-fill ~/images/wallpapers/space2.jpg
 # Keys
 exec --no-startup-id setxkbmap -option ctrl:nocaps
 
-assign [class="Firefox"] $workspace2
+assign [class="Firefox"] $workspace8
 assign [class="Spotify"] $workspace10
 assign [class="Slack"] $workspace9
 
 gaps inner 10
-gaps outer 5
+gaps outer 0
 
 exec --no-startup-id compton -f
 exec --no-startup-id firefox
@@ -262,3 +259,4 @@ exec --no-startup-id twmnd
 for_window [class="^.*"] border pixel 1
 
 smart_borders on
+smart_gaps on

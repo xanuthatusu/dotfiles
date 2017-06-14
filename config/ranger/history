@@ -1,4 +1,16 @@
 search work
 q
 search vim
+move gi
+mv gi
+rename CGP_9440.JPG
+rename profile_pic.JPG
+mkdir Books
+search range
+find 
+rename
+open_with 
 
+R
+open_with nvim
+bulkrename 

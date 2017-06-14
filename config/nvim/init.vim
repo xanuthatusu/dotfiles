@@ -5,22 +5,27 @@ filetype off
 call plug#begin("$HOME/.config/nvim/plugged")
 
 Plug 'airblade/vim-gitgutter'
+Plug 'alvan/vim-closetag'
 Plug 'chrisbra/colorizer'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
-Plug 'jiangmiao/auto-pairs'
+Plug 'honza/vim-snippets'
 Plug 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'matze/vim-move'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neomake/neomake'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neomake/neomake'
+Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -33,19 +38,29 @@ filetype plugin on " Required
 filetype indent on " Required
 
 " Options
-set showcmd
-set path+=**
-set shell=bash
+let mapleader="\<Space>"
 set background=dark
-set scrolloff=5
-set mouse=a
-set number
-set noswapfile
-set wrap
+set gdefault
+set hidden
+set inccommand=nosplit
+set incsearch
 set linebreak
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
-let mapleader="\<Space>"
+set mouse=a
+set noswapfile
+set number
+set path+=**
+set scrolloff=5
+set shell=bash
+set showcmd
+set wrap
+
+" Tab stuff
+set smartindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
 
 " Remember cursor postion between sessions
 autocmd BufReadPost *
@@ -58,6 +73,9 @@ autocmd BufRead * normal zz
 
 " Colors
 colorscheme gruvbox
+"colorscheme onedark
+"set colorcolumn=100
+call matchadd('ColorColumn', '\%100v', 100)
 hi SpecialKey ctermfg=66 guifg=#00cc00
 " hi Normal guibg=NONE ctermbg=NONE " Transparency
 
@@ -75,6 +93,7 @@ nnoremap gp `[v`]
 nnoremap gb :ls<CR>:b<space>
 nnoremap tt <C-w>
 nmap <silent> <leader>/ :noh<CR>
+nnoremap <F9> :Goyo<CR>
 
 " Autocmds
 set relativenumber
@@ -90,6 +109,7 @@ let g:deoplete#enable_at_startup=1
 let g:colorizer_auto_filetype='css,html'
 
 " Airline
+let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
 
@@ -116,3 +136,8 @@ nnoremap <silent> <leader>b :Buffer<CR>
 
 " Vim move
 let g:move_key_modifier='C'
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardsTrigger="<S-tab>"

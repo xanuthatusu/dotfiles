@@ -1,5 +1,5 @@
-*.swp
 *.DS_Store
+*.swp
 config/chromium
 config/configstore
 config/dconf/user
@@ -11,13 +11,18 @@ config/hub
 config/live-latex-preview
 config/menus
 config/mimeapps.list
+config/mutt/gmail
+config/mutt/gmailrc
 config/nemo
 config/nvim/.netrwhist
 config/nvim/plugged/
 config/pulse
 config/qalculate
 config/ranger/bookmarks
+config/ranger/history
 config/Slack
+config/smplayer
 config/spotify
 config/Trolltech.conf
 config/yarn
+config/youtube-viewer/
