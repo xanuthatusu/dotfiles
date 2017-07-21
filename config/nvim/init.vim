@@ -7,6 +7,8 @@ call plug#begin("$HOME/.config/nvim/plugged")
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'chrisbra/colorizer'
+Plug 'ehamberg/vim-cute-python'
+Plug 'ervandew/supertab'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
 Plug 'honza/vim-snippets'
@@ -14,6 +16,7 @@ Plug 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 Plug 'matze/vim-move'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
@@ -26,7 +29,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
@@ -40,8 +42,10 @@ filetype indent on " Required
 " Options
 let mapleader="\<Space>"
 set background=dark
+set conceallevel=2
 set gdefault
 set hidden
+set ignorecase
 set inccommand=nosplit
 set incsearch
 set linebreak
@@ -54,6 +58,7 @@ set path+=**
 set scrolloff=5
 set shell=bash
 set showcmd
+set smartcase
 set wrap
 
 " Tab stuff
@@ -94,11 +99,21 @@ nnoremap gb :ls<CR>:b<space>
 nnoremap tt <C-w>
 nmap <silent> <leader>/ :noh<CR>
 nnoremap <F9> :Goyo<CR>
+nnoremap <silent> <F7> :bp<CR>
+nnoremap <silent> <F8> :bn<CR>
 
 " Autocmds
 set relativenumber
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
+cmap w!! w !sudo tee % > /dev/null
+
+" Conceal
+"au VimEnter * syntax keyword Statement lambda conceal cchar=λ
+"au VimEnter * syntax keyword Statement >= conceal cchar=≥
+"au VimEnter * syntax keyword Statement <= conceal cchar=≤
+"au VimEnter * hi! link Conceal Statement
+"au VimEnter * set conceallevel=2
 
 " Plugin Options
 
@@ -110,6 +125,7 @@ let g:colorizer_auto_filetype='css,html'
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts=1
 let g:airline_theme='powerlineish'
 
@@ -125,7 +141,7 @@ autocmd VimEnter * call AirlineInit()
 
 " Neomake
 autocmd! BufWritePost * Neomake
-autocmd! BufEnter * Neomake
+"autocmd! BufEnter * Neomake
 let g:neomake_javascript_enabled_marker = ["eslint"]
 let g:neomake_python_enabled_marker     = ["pylintrc"]
 
@@ -141,3 +157,12 @@ let g:move_key_modifier='C'
 let g:UltiSnipsExpandTrigger="<c-s>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardsTrigger="<S-tab>"
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" Indent Guides
+let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=1
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_exclude_filetypes=['help', 'diff']

@@ -25,6 +25,11 @@ export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/home/anthony/.config/nvim/plugged/vim-live-latex-preview/bin:$PATH
 export PATH=/home/anthony/.gem/ruby/2.4.0/bin:$PATH
 
+export SPOTIPY_CLIENT_ID="489201485d514813bca094694cfee09d"
+export SPOTIPY_CLIENT_SECRET="477549bf4b8a4875b0b82279148e71b8"
+export SPOTIPY_REDIRECT_URI="https://mysite.com/callback/"
+export YOUTUBE_DEV_KEY="AIzaSyDS7h3GZKL5f-IjamrYzZsqDgO9XR96amE"
+
 [ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
 source /usr/share/nvm/init-nvm.sh
 
