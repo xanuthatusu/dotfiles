@@ -1,0 +1,13 @@
+OFF=`amixer -D pulse get Master | grep -m 1 -oe 'off'`
+if [ "$OFF" == "off" ]; then
+  echo -e "  MUTE\nMUTE\n#ff0000"
+else
+  PERCENT=`amixer -D pulse get Master | grep -oe '[[:digit:]]*%'`
+  echo "  $PERCENT"
+fi
+
+case $BLOCK_BUTTON in
+  3) amixer -q -D $MIXER sset $SCONTROL $(capability) toggle ;;  # right click, mute/unmute
+  4) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;; # scroll up, increase
+  5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
+esac
