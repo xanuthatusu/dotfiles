@@ -11,17 +11,21 @@ Plug 'ehamberg/vim-cute-python'
 Plug 'ervandew/supertab'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
+Plug 'gregsexton/MatchTag'
 Plug 'honza/vim-snippets'
+Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
+Plug 'mattn/emmet-vim'
 Plug 'matze/vim-move'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neomake/neomake'
+Plug 'pangloss/vim-javascript'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
@@ -32,15 +36,19 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
-Plug 'ying17zi/vim-live-latex-preview'
+Plug 'w0rp/ale'
+"Plug 'ying17zi/vim-live-latex-preview'
+Plug 'lervag/vimtex'
 
 call plug#end()    " Required
 filetype on        " Required
 filetype plugin on " Required
 filetype indent on " Required
+filetype plugin indent on " Required
 
 " Options
 let mapleader="\<Space>"
+let s:maxoff = 5000
 set background=dark
 set conceallevel=2
 set gdefault
@@ -66,6 +74,32 @@ set smartindent
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+
+" Folding
+set debug=msg
+set foldmethod=expr
+set foldexpr=GetNormalFold(v:lnum)
+set foldlevelstart=20
+
+function! IndentLevel(lnum)
+     return indent(a:lnum) / &shiftwidth
+endfunction
+
+function! GetNormalFold(lnum)
+     if getline(a:lnum) =~? '\v^\s*$'
+          return '-1'
+     endif
+
+     return IndentLevel(a:lnum)
+endfunction
+
+" Persistent undo
+try
+     set undodir=~/.vim_runtime/temp_dirs/undodir
+     set undofile
+catch
+endtry
 
 " Remember cursor postion between sessions
 autocmd BufReadPost *
@@ -82,7 +116,7 @@ colorscheme gruvbox
 "set colorcolumn=100
 call matchadd('ColorColumn', '\%100v', 100)
 hi SpecialKey ctermfg=66 guifg=#00cc00
-" hi Normal guibg=NONE ctermbg=NONE " Transparency
+hi Normal guibg=NONE ctermbg=NONE " Transparency
 
 " Custom keymaps
 " Ease of Use
@@ -108,6 +142,8 @@ autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 cmap w!! w !sudo tee % > /dev/null
 
+au BufNewFile,BufRead config setf config
+
 " Conceal
 "au VimEnter * syntax keyword Statement lambda conceal cchar=λ
 "au VimEnter * syntax keyword Statement >= conceal cchar=≥
@@ -127,7 +163,14 @@ let g:colorizer_auto_filetype='css,html'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts=1
-let g:airline_theme='powerlineish'
+"let g:airline_theme='base16_spacemacs'
+"let g:airline_theme='hybridline'
+let g:airline_theme='gruvbox'
+
+"let g:airline_left_sep = "\uE0B8"
+"let g:airline_left_alt_sep = "\uE0B9"
+"let g:airline_right_sep = "\uE0BA"
+"let g:airline_right_alt_sep = "\uE0BB"
 
 function! AirlineInit()
      let g:airline_section_a = airline#section#create(["mode", " ", "branch"])
@@ -138,12 +181,6 @@ function! AirlineInit()
      let g:airline_section_z = airline#section#create_right(["%l", "%c"])
 endfunction
 autocmd VimEnter * call AirlineInit()
-
-" Neomake
-autocmd! BufWritePost * Neomake
-"autocmd! BufEnter * Neomake
-let g:neomake_javascript_enabled_marker = ["eslint"]
-let g:neomake_python_enabled_marker     = ["pylintrc"]
 
 " Fuzzy File Finder
 set rtp+=$HOME/.fzf
@@ -163,6 +200,24 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Indent Guides
 let g:indent_guides_guide_size=1
-let g:indent_guides_start_level=1
+let g:indent_guides_start_level=2
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_exclude_filetypes=['help', 'diff']
+
+" Markdown Preview
+"let vim_markdown_preview_toggle=2
+let vim_markdown_preview_browser="Chromium"
+let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_preview_github=1
+
+" Ale
+let g:airline#extensions#ale#enabled = 1
+
+" Nerd Tree
+map <leader>d :NERDTreeToggle<CR>
+
+" Vimwiki
+let g:vimwiki_list = [{'path': '~/.config/nvim/vimwiki/', 'path_html': '/tmp/vimwiki_html'}]
+
+" Vimtex
+let g:vimtex_view_method = 'mupdf'
