@@ -12,9 +12,16 @@ antigen bundle command-not-found
 
 antigen bundle zdharma/fast-syntax-highlighting
 
+antigen bundle elstgav/branch-manager
+antigen bundle peterhurford/git-aliases.zsh
 antigen bundle Valiev/almostontop
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle ascii-soup/zsh-url-highlighter
+antigen bundle zuxfoucault/colored-man-pages_mod
+
 antigen bundle pass
 
 antigen theme bhilburn/powerlevel9k powerlevel9k
+#antigen theme molovo/filthy
 
 antigen apply
