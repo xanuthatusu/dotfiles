@@ -1,47 +1,85 @@
+###---Info---###
+# vim: filetype=config
+
+# This is Anthony George's i3-gaps configuration file.
+# Me: http://tepia.net
+# Email: anthony@tepia.net
+
+
+###---General Options---###
+new_window pixel 1
+smart_borders on
+popup_during_fullscreen leave_fullscreen
+focus_on_window_activation focus
+mouse_warping none
+#focus_follows_mouse no
+
+
+###---Basic Definitions---###
+floating_modifier $mod
+font pango:System San Francisco Display 9
+#font pango:Museo Sans 9
+gaps inner 15
+gaps outer 15
+set $browser chromium
 set $mod Mod4
-
-set $border-color                    #C0C5CE
-set $bg-color                        #2f343f
-set $inactive-bg-color               #2f343f
-set $text-color                      #575e6d
-set $workspace-text-color            #f3f4f5
-set $inactive-text-color             #676e7d
-set $inactive-workspace-text-color   #676E7D
-set $urgent-bg-color                 #E53935
-
-set $base00 #101218
-set $base01 #1f222d
-set $base02 #252936
-set $base03 #7780a1
-set $base04 #C0C5CE
-set $base05 #d1d4e0
-set $base06 #C9CCDB
-set $base07 #ffffff
-set $base08 #ee829f
-set $base09 #f99170
-set $base0A #ffefcc
-set $base0B #a5ffe1
-set $base0C #97e0ff
-set $base0D #97bbf7
-set $base0E #c0b7f9
-set $base0F #fcc09e
-
 set $term termite
 
-font pango:System San Francisco Display 9
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+###---Starting External Scripts---###
+exec --no-startup-id compton -f --config /etc/xdg/compton.conf
+exec --no-startup-id chromium
+exec --no-startup-id $term
+exec --no-startup-id slack
+exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec --no-startup-id xset -dpms
+exec_always --no-startup-id /home/anthony/.config/mouse.sh
 
-# start a terminal
+#exec_always --no-startup-id /home/anthony/.config/rotate_wallpaper.sh
+exec_always --no-startup-id feh --bg-fill /home/anthony/images/wallpapers/gruvbox_alt_2.jpg
+
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps
+exec_always --no-startup-id xmodmap -e 'keycode 135 = Super_R'
+bindsym Menu exec --no-startup-id xmodmap -e 'keycode 135 = Super_R'
+
+
+###---Dropdown/Scratchpad Windows---###
+for_window [window_role="dropdown"] floating enable
+for_window [window_role="dropdown"] resize set 625 400
+for_window [window_role="dropdown"] move position center
+for_window [window_role="dropdown"] move scratchpad
+exec --no-startup-id $term -r dropdown
+
+for_window [window_role="htop"] floating enable
+for_window [window_role="htop"] move position center
+for_window [window_role="htop"] move scratchpad
+exec --no-startup-id $term -r htop -e htop
+
+for_window [window_role="cmus"] floating enable
+for_window [window_role="cmus"] move position center
+for_window [window_role="cmus"] move scratchpad
+exec --no-startup-id $term -r cmus -e cmus
+
+
+###---Basic Bindings---###
 bindsym $mod+Return exec --no-startup-id termite
 
-# Key bindings
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+
+bindsym Print exec scrot -u "$HOME/images/screenshots/%Y-%m-%d_%H-%M-%S.png" && notify-send Screenshot "Saved to ~/images/screenshots"
+bindsym Shift+Print --release exec notify-send Screenshot "Please select area" && exec scrot -s "$HOME/images/screenshots/%Y-%m-%d_%H-%M-%S.png" && notify-send Screenshot "Saved to ~/images/screenshots"
+
+bindsym $mod+grave [window_role="dropdown"] scratchpad show; move position center
+
+
+###---Letter Key bindings---###
 bindsym $mod+q             kill
 bindsym $mod+Shift+q       kill
 
-bindsym $mod+w             exec --no-startup-id firefox
-bindsym $mod+Shift+w       exec qutebrowser
+bindsym $mod+w             exec --no-startup-id $browser
+#bindsym $mod+Shift+w
 
 bindsym $mod+e             layout toggle split
 bindsym $mod+Shift+e       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -64,8 +102,8 @@ bindsym $mod+i             resize shrink height 1 px or 5 ppt
 bindsym $mod+o             resize grow width 1 px or 5 ppt
 #bindsym $mod+Shift+o
 
-bindsym $mod+p             gaps inner current set 0
-bindsym $mod+Shift+p       gaps inner current set 10
+bindsym $mod+p             gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+p       gaps inner current set 15; gaps outer current set 15
 
 bindsym $mod+a             exec $term -e qalc
 bindsym $mod+Shift+a       floating enable; resize set 320 px 180 px; sticky enable; move window to position 1045 px 0 px
@@ -100,16 +138,16 @@ bindsym $mod+Shift+colon   focus child
 bindsym $mod+z             gaps outer current plus 5
 bindsym $mod+Shift+z       gaps outer current minus 5
 
-bindsym $mod+x             gaps inner all set 10
+bindsym $mod+x             gaps inner all set 15; gaps outer all set 15
 bindsym $mod+shift+x       exec ~/.config/i3/lock.sh ~/.config/i3/lock.png
 
-bindsym $mod+c             [window_role="cmus"] scratchpad show
-bindsym $mod+Shift+c       reload
+bindsym $mod+c             [window_role="cmus"] scratchpad show; move position center
+#bindsym $mod+Shift+c
 
 bindsym $mod+v             split v
 bindsym $mod+Shift+v       split h
 
-bindsym $mod+b             [window_role="htop"] scratchpad show
+bindsym $mod+b             [window_role="htop"] scratchpad show; move position center
 bindsym $mod+Shift+b       fullscreen toggle
 
 bindsym $mod+n             layout stacked
@@ -118,30 +156,10 @@ bindsym $mod+Shift+n       layout tabbed
 bindsym $mod+m             move workspace to output right
 #bindsym $mod+Shift+m
 
-bindsym $mod+Up            move up 20px
-bindsym $mod+Shift+Up      move up 50px
 
-bindsym $mod+Left          move left 20px
-bindsym $mod+Shift+Left    move left 50px
-
-bindsym $mod+Right         move right 20px
-bindsym $mod+Shift+Right   move right 50px
-
-bindsym $mod+Down          move down 20px
-bindsym $mod+Shift+Down    move down 50px
-
-bindsym $mod+space focus mode_toggle
-bindsym $mod+Shift+space floating toggle
-
-# Bind alt-tab to last used workspace
+###---Workspace Bindings---###
 bindsym Mod1+Tab workspace back_and_forth
 
-#bindsym Print exec xfce4-screenshooter -w -s ~/images/screenshots && notify-send Screenshot "Saved to ~/images/screenshots"
-bindsym Print exec scrot -u "$HOME/images/screenshots/%Y-%m-%d_%H-%M-%S.png" && notify-send Screenshot "Saved to ~/images/screenshots"
-bindsym Shift+Print --release exec notify-send Screenshot "Please select area" && exec scrot -s "$HOME/images/screenshots/%Y-%m-%d_%H-%M-%S.png" && notify-send Screenshot "Saved to ~/images/screenshots"
-#bindsym Shift+Print exec xfce4-screenshooter -r
-
-# Workspaces
 set $workspace1 "1 "
 set $workspace2 "2 "
 set $workspace3 "3 "
@@ -177,9 +195,27 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
+for_window [window_role="gimp-toolbox"] floating disable; move right
+for_window [window_role="gimp-dock"] floating disable; move left
+for_window [class="Vlc"] floating enable, resize set 554 312, move window to position 1335 689
+assign [class="Chromium"] $workspace8
+assign [class="Slack"] $workspace9
+
+workspace $workspace8 gaps inner 0
+workspace $workspace8 gaps outer 0
+
+
+###---Colors---###
+set $border-color                    #928374
+set $bg-color                        #3c3836
+set $inactive-bg-color               #282828
+set $text-color                      #ebdbb2
+set $inactive-text-color             #a89984
+set $urgent-bg-color                 #cc241d
+
 # window colors
 #                       border              background         text                 indicator
-client.focused          $border-color       $border-color      $text-color          $inactive-text-color
+client.focused          $border-color       $bg-color          $text-color          $inactive-text-color
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-text-color
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-text-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $inactive-text-color
@@ -189,82 +225,64 @@ bar {
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	colors {
 		background $bg-color
-		separator #757575
+		separator $border-color
 		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $workspace-text-color
-		active_workspace   $bg-color          $bg-color          $inactive-workspace-text-color
-		inactive_workspace $bg-color          $bg-color          $inactive-workspace-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $workspace-text-color
+		focused_workspace  $bg-color          $bg-color          $text-color
+		active_workspace   $bg-color          $bg-color          $inactive-text-color
+		inactive_workspace $bg-color          $bg-color          $inactive-text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
 
-	# Disable annoying inconsistent tray icons
-	tray_output none
+	tray_output primary
 }
 
+
+###---Audio and Music Definitions---###
+set $pause cmus-remote -u
+set $stop  cmus-remote -s
+set $next  cmus-remote -n
+set $prev  cmus-remote -r
+
+
+###---Media Keys---###
 bindsym XF86Sleep exec ~/.config/i3/lock.sh ~/.config/i3/lock.png
 
-for_window [window_role="gimp-toolbox"] floating disable; move right
-for_window [window_role="gimp-dock"] floating disable; move left
-
-for_window [class="Vlc"] floating enable, resize set 554 312, move window to position 1335 689
-
-# Enabling the multimedia keys
-# Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+10 i3blocks #increase sound volume
+# Volume keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 2%+ > /dev/null && pkill -RTMIN+10 i3blocks #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks #decrease sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 2%- > /dev/null && pkill -RTMIN+10 i3blocks #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks # mute sound
 
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
-
-# Touchpad controls
-bindsym XF86TouchpadToggle exec ~/.config/i3/toggletouchpad.sh # toggle touchpad
-
 # Media player controls
-bindsym XF86AudioPlay exec cmus-remote -u
-bindsym XF86AudioStop exec cmus-remote -s
-bindsym XF86AudioNext exec cmus-remote -n
-bindsym XF86AudioPrev exec cmus-remote -r
-bindsym Shift+XF86AudioPlay exec playerctl play-pause
-bindsym Shift+XF86AudioStop exec playerctl stop
-bindsym Shift+XF86AudioNext exec playerctl next
-bindsym Shift+XF86AudioPrev exec playerctl previous
+bindsym Shift+XF86AudioPlay exec $pause
+bindsym Shift+XF86AudioStop exec $stop
+bindsym Shift+XF86AudioNext exec $next
+bindsym Shift+XF86AudioPrev exec $prev
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
-exec_always --no-startup-id /home/anthony/.config/rotate_wallpaper.sh
-exec_always --no-startup-id /home/anthony/.config/mouse.sh
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 15 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15 # decrease screen brightness
 
-# Keys
-exec --no-startup-id setxkbmap -option ctrl:nocaps
+# Toggle touchpad
+bindsym XF86TouchpadToggle exec ~/.config/i3/toggletouchpad.sh
 
-assign [class="Chromium"] $workspace8
-assign [class="Slack"] $workspace9
-assign [window_role="cmus"] $workspace10
 
-for_window [window_role="htop"] move scratchpad
-for_window [window_role="cmus"] move scratchpad
+###---Function Buttons---###
+bindsym F12 exec --no-startup-id keepass --auto-type
 
-gaps inner 10
-gaps outer 0
+###---Arrow Keys---###
+bindsym $mod+Up            move up 20px
+bindsym $mod+Shift+Up      move up 50px
 
-exec --no-startup-id compton -f --config /etc/xdg/compton.conf
-exec --no-startup-id chromium
-exec --no-startup-id $term
-#exec --no-startup-id LD_PRELOAD=/usr/lib/libcurl.so.3:~/.config/spotifywm.so /usr/share/spotify/spotify
-exec --no-startup-id $term -r cmus -e cmus
-exec --no-startup-id $term -r htop -e htop
-exec --no-startup-id slack
-#exec --no-startup-id twmnd
-exec --no-startup-id dunst
+bindsym $mod+Left          move left 20px
+bindsym $mod+Shift+Left    move left 50px
 
-new_window pixel 1
+bindsym $mod+Right         move right 20px
+bindsym $mod+Shift+Right   move right 50px
 
-smart_borders on
+bindsym $mod+Down          move down 20px
+bindsym $mod+Shift+Down    move down 50px
 
-popup_during_fullscreen leave_fullscreen
-
-focus_on_window_activation focus
-
-mouse_warping none

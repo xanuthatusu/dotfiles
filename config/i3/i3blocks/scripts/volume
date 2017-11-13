@@ -1,13 +1,20 @@
-OFF=`amixer -D pulse get Master | grep -m 1 -oe 'off'`
-if [ "$OFF" == "off" ]; then
-  echo -e "  MUTE\nMUTE\n#ff0000"
-else
-  PERCENT=`amixer -D pulse get Master | grep -oe '[[:digit:]]*%'`
-  echo "  $PERCENT"
-fi
+#!/bin/bash
+# vim: filetype=sh
 
-case $BLOCK_BUTTON in
-  3) amixer -q -D $MIXER sset $SCONTROL $(capability) toggle ;;  # right click, mute/unmute
-  4) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;; # scroll up, increase
-  5) amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
-esac
+#FILENAME: volume-display.sh
+#REQUIRES FONTAWESOME
+
+mute=`amixer -D pulse | grep "Front Left: Play" | awk '{print $6}'`
+
+if [ $mute == "[on]" ]; then
+	vol=`amixer -D pulse | grep "Front Left: Play" | awk '{print $5}' | tr -d '[]' | tr -d '%'`
+	if [ $vol == "0" ]; then
+		echo " 0"
+	elif [ $vol -gt 49 ]; then
+		echo "  "$vol
+	elif [ $vol -lt 50 ]; then
+		echo "  "$vol
+	fi
+else
+	echo -e "  Muted\nMuted\n#cc241d"
+fi
