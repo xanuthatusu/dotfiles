@@ -7,10 +7,11 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-;font = Source Code Pro for Powerline 10
-font = InconsolataForPowerline Nerd Font 12
-;font = DroidSansMonoForPowerline Nerd Font 10
-;font = AnonymicePowerline Nerd Font 12
+;font = Inconsolata Nerd Font 12
+;font = Fira Mono 10
+font = FuraMono Nerd Font 10
+;font = mononoki Nerd Font 11
+;font = Knack Nerd Font 10
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -34,36 +35,108 @@ filter_unmatched_urls = true
 # emit escape sequences for extra modified keys
 #modify_other_keys = false
 
+#[colors]
+##cursor = #dcdccc
+##cursor_foreground = #dcdccc
+#foreground = #dcdccc
+#foreground_bold = #ffffff
+##background = #3f3f3f
+#
+## 20% background transparency (requires a compositor)
+#background = rgba(63, 63, 63, 0.9)
+#
+## if unset, will reverse foreground and background
+#highlight = #2f2f2f
+#
+## colors from color0 to color254 can be set
+#color0 = #3f3f3f
+#color1 = #705050
+#color2 = #60b48a
+#color3 = #dfaf8f
+#color4 = #506070
+#color5 = #dc8cc3
+#color6 = #8cd0d3
+#color7 = #dcdccc
+#color8 = #709080
+#color9 = #dca3a3
+#color10 = #c3bf9f
+#color11 = #f0dfaf
+#color12 = #94bff3
+#color13 = #ec93d3
+#color14 = #93e0e3
+#color15 = #ffffff
+
+#[colors]
+## special
+#foreground      = #ffffff
+#foreground_bold = #ffffff
+#cursor          = #ffffff
+##background      = #151515
+#background       =rgba(21, 21, 21,  0.90)
+## black
+#color0  = #252525
+#color8  = #00BB74
+## red
+#color1  = #f8f8f8
+#color9  = #f8f8f8
+## green
+#color2  = #0084FF
+#color10 = #0084FF
+## yellow
+#color3  = #f7f7f7
+#color11 = #f7f7f7
+## blue
+#color4  = #606060
+#color12 = #606060
+## magenta
+#color5  = #0084FF
+#color13 = #0084FF
+## cyan
+#color6  = #e2e2e2
+#color14 = #e2e2e2
+## white
+#color7  = #ffffff
+#color15 = #ffffff
+
 [colors]
-#cursor = #dcdccc
-#cursor_foreground = #dcdccc
-foreground = #dcdccc
-foreground_bold = #ffffff
-#background = #3f3f3f
+# hard contrast: background = #1d2021
+;background = #282828
+background = rgba(40, 40, 40, 0.9)
+# soft contrast: background = #32302f
+foreground = #ebdbb2
+foreground_bold = #ebdbb2
 
-# 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.9)
+# dark0 + gray
+color0 = #282828
+color8 = #928374
 
-# if unset, will reverse foreground and background
-highlight = #2f2f2f
+# neutral_red + bright_red
+color1 = #cc241d
+color9 = #fb4934
 
-# colors from color0 to color254 can be set
-color0 = #3f3f3f
-color1 = #705050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
-color14 = #93e0e3
-color15 = #ffffff
+# neutral_green + bright_green
+color2 = #98971a
+color10 = #b8bb26
+
+# neutral_yellow + bright_yellow
+color3 = #d79921
+color11 = #fabd2f
+
+# neutral_blue + bright_blue
+color4 = #458588
+color12 = #83a598
+
+# neutral_purple + bright_purple
+color5 = #b16286
+color13 = #d3869b
+
+# neutral_aqua + faded_aqua
+color6 = #689d6a
+color14 = #8ec07c
+
+# light4 + light1
+color7 = #a89984
+color15 = #ebdbb2
 
 [hints]
 #font = Monospace 12
