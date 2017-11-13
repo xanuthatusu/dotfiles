@@ -1,19 +1,25 @@
+export TERM="xterm-256color"
 source ~/.antigenrc
 
 ENABLE_CORRECTION="true"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs os_icon time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
-alias spotify="LD_PRELOAD=/usr/lib/libcurl.so.3:~/.config/spotifywm.so /usr/share/spotify/spotify &"
+alias startvpn="sudo openvpn --config /etc/openvpn/client/US_West.conf --writepid /run/openvpn-client/west.pid --daemon"
+alias stopvpn="sudo killall openvpn"
+
 alias vim="nvim"
 alias git="hub"
 alias up="cd ../"
+alias bell="echo -e '\a'"
 
 alias rangercd="ranger --choosedir=$HOME/.config/rangerdir; cd $(cat $HOME/.config/rangerdir)"
+
+alias poly="rlwrap poly"
 
 source /etc/environment
 
@@ -24,6 +30,10 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/home/anthony/.config/nvim/plugged/vim-live-latex-preview/bin:$PATH
 export PATH=/home/anthony/.gem/ruby/2.4.0/bin:$PATH
+export PATH=/home/anthony/.nvm/versions/node/v6.11.1/bin:$PATH
+export PATH=/home/anthony/personal/pebble/pebble-sdk-4.5-linux64/bin:$PATH
+export PATH=/home/anthony/personal/pebble/pebble-sdk-4.5-linux64/arm-cs-tools/bin:$PATH
+export PATH=/home/anthony/.local/bin:$PATH
 
 export SPOTIPY_CLIENT_ID="489201485d514813bca094694cfee09d"
 export SPOTIPY_CLIENT_SECRET="477549bf4b8a4875b0b82279148e71b8"
@@ -37,7 +47,12 @@ source ~/.antigen/bundles/Valiev/almostontop/almostontop.plugin.zsh
 
 source ~/.fonts/*.sh
 
+eval "$(fasd --init auto)"
+alias v='f -e nvim'
+
 function mkcd () {
     mkdir $1
     cd $1
 }
+
+source /usr/share/autojump/autojump.zsh
