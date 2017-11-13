@@ -1,0 +1,38 @@
+{
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["k"],
+            "after": ["g", "k"]
+        },
+        {
+            "before": ["j"],
+            "after": ["g", "j"]
+        },
+        {
+            "before": ["leader", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "editor.lineNumbers": "relative",
+    "editor.cursorBlinking": "phase",
+    "editor.renderLineHighlight": "gutter",
+    "workbench.colorTheme": "Gruvbox Dark (Medium)",
+    "editor.wordWrap": "on",
+    "editor.wrappingIndent": "indent",
+    "editor.fontSize": 13,
+    "window.zoomLevel": 0
+}
