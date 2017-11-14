@@ -9,6 +9,7 @@ config/heroku
 config/htop
 config/hub
 config/live-latex-preview
+config/macro.txt
 config/menus
 config/mimeapps.list
 config/mutt/gmail
@@ -44,3 +45,4 @@ config/transmission-daemon/dht.dat
 config/ranger/history
 config/vlc/vlc-qt-interface.conf
 config/vlc/vlcrc
+config/mutt/tepia-gmailrc
