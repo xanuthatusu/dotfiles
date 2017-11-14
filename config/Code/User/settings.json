@@ -1,10 +1,22 @@
 {
-    "vim.disableAnnoyingNeovimMessage": true,
     "vim.hlsearch": true,
+    "vim.leader": "<Space>",
     "vim.insertModeKeyBindings": [
         {
             "before": ["j", "k"],
             "after": ["<Esc>"]
+        }
+    ],
+    "vim.otherModesKeyBindings": [
+        {
+            "before": ["leader", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": [""]
+                }
+            ]
         }
     ],
     "vim.otherModesKeyBindingsNonRecursive": [
@@ -15,16 +27,6 @@
         {
             "before": ["j"],
             "after": ["g", "j"]
-        },
-        {
-            "before": ["leader", "s"],
-            "after": [],
-            "commands": [
-                {
-                    "command": "workbench.action.files.save",
-                    "args": []
-                }
-            ]
         }
     ],
     "editor.lineNumbers": "relative",
