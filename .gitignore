@@ -46,3 +46,6 @@ config/ranger/history
 config/vlc/vlc-qt-interface.conf
 config/vlc/vlcrc
 config/mutt/tepia-gmailrc
+config/.mono
+config/MusicBrainz
+config/easytag
