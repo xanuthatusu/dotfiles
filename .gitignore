@@ -3,6 +3,7 @@
 config/.mono
 config/Code/*
 !config/Code/User
+config/Code/User/workspaceStorage/*
 config/KeePass
 config/MusicBrainz
 config/Slack

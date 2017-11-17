@@ -1,5 +1,6 @@
 {
     "vim.hlsearch": true,
+    "vim.foldfix": true,
     "vim.leader": "<Space>",
     "vim.insertModeKeyBindings": [
         {
@@ -20,21 +21,27 @@
         }
     ],
     "vim.otherModesKeyBindingsNonRecursive": [
-        {
-            "before": ["k"],
-            "after": ["g", "k"]
-        },
-        {
-            "before": ["j"],
-            "after": ["g", "j"]
-        }
+        // Currently broken cause VSCode vim sux
+        // {
+        //     "before": ["k"],
+        //     "after": ["g", "k"]
+        // },
+        // {
+        //     "before": ["j"],
+        //     "after": ["g", "j"]
+        // }
     ],
     "editor.lineNumbers": "relative",
     "editor.cursorBlinking": "phase",
     "editor.renderLineHighlight": "gutter",
+    "editor.minimap.enabled": false,
     "workbench.colorTheme": "Gruvbox Dark (Medium)",
     "editor.wordWrap": "on",
     "editor.wrappingIndent": "indent",
     "editor.fontSize": 13,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "material-icon-theme",
+    "files.associations": {
+        ".env": "python"
+    }
 }
