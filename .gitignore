@@ -3,6 +3,7 @@
 config/.mono
 config/Code/*
 !config/Code/User
+config/Code/User/sync*
 config/Code/User/workspaceStorage/*
 config/KeePass
 config/MusicBrainz
@@ -37,6 +38,7 @@ config/nemo
 config/nvim/.netrwhist
 config/nvim/plugged/
 config/nvim/vimwiki
+config/Postman
 config/pulse
 config/qalculate
 config/ranger/bookmarks
