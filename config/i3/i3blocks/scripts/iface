@@ -40,7 +40,7 @@ if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
 fi
 
 ICON=" "
-if [[ $IF = 'wlp3s0' ]]; then
+if [[ $IF = 'wlp4s0' ]]; then
   ICON=" "
 fi
 
