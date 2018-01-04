@@ -263,8 +263,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 15 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 && pkill -RTMIN+11 i3blocks # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 && pkill -RTMIN+11 i3blocks # decrease screen brightness
 
 # Toggle touchpad
 bindsym XF86TouchpadToggle exec ~/.config/i3/toggletouchpad.sh

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BACKLIGHT=$(xbacklight)
+BACKLIGHT=${BACKLIGHT::-7}
+echo " $BACKLIGHT"
