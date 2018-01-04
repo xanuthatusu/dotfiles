@@ -12,6 +12,8 @@
     "editor.cursorBlinking": "phase",
     "editor.minimap.enabled": false,
     "editor.fontLigatures": true,
+    "editor.fontFamily": "Fira Mono",
+    "editor.fontSize": 15,
   
     "vim.otherModesKeyBindingsNonRecursive": [
         {
@@ -481,7 +483,7 @@
       "sync.pathPrefix": "",
       "sync.quietSync": false,
       "sync.askGistName": false,
-      "window.zoomLevel": 0,
+    "window.zoomLevel": 0,
     //   "go.useLanguageServer": false,
       "files.exclude": {
           "node_modules": true,
@@ -489,5 +491,6 @@
           "**/.DS_Store": true
       },
     //   "go.vetOnSave": "off",
-      "vim.useSystemClipboard": true
-  }
+    "vim.useSystemClipboard": true,
+    "git.confirmSync": false
+}
