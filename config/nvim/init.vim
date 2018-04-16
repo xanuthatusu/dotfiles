@@ -154,7 +154,7 @@ au BufNewFile,BufRead config setf config
 " Plugin Options
 
 " Deoplete
-let g:deoplete#enable_at_startup=1
+"let g:deoplete#enable_at_startup=1
 
 " Colorizer
 let g:colorizer_auto_filetype='css,html'

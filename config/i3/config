@@ -7,8 +7,8 @@
 
 
 ###---General Options---###
-new_window pixel 1
-smart_borders on
+new_window pixel 2
+#smart_borders on
 popup_during_fullscreen leave_fullscreen
 focus_on_window_activation focus
 mouse_warping none
@@ -21,14 +21,14 @@ font pango:System San Francisco Display 9
 #font pango:Museo Sans 9
 gaps inner 15
 gaps outer 15
-set $browser chromium
+set $browser firefox
 set $mod Mod4
-set $term termite
-
+#set $term termite
+set $term st
 
 ###---Starting External Scripts---###
 exec --no-startup-id compton -f --config /etc/xdg/compton.conf
-exec --no-startup-id chromium
+exec --no-startup-id $browser
 exec --no-startup-id $term
 exec --no-startup-id slack
 exec --no-startup-id dunst
@@ -37,7 +37,7 @@ exec --no-startup-id xset -dpms
 exec_always --no-startup-id /home/anthony/.config/mouse.sh
 
 #exec_always --no-startup-id /home/anthony/.config/rotate_wallpaper.sh
-exec_always --no-startup-id feh --bg-fill /home/anthony/images/wallpapers/gruvbox_alt_2.jpg
+exec_always --no-startup-id feh --bg-fill /home/anthony/images/wallpapers/lakeside-sunset.png
 
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec_always --no-startup-id xmodmap -e 'keycode 135 = Super_R'
@@ -45,25 +45,26 @@ bindsym Menu exec --no-startup-id xmodmap -e 'keycode 135 = Super_R'
 
 
 ###---Dropdown/Scratchpad Windows---###
-for_window [window_role="dropdown"] floating enable
-for_window [window_role="dropdown"] resize set 625 400
-for_window [window_role="dropdown"] move position center
-for_window [window_role="dropdown"] move scratchpad
-exec --no-startup-id $term -r dropdown
+for_window [class="dropdown"] floating enable
+for_window [class="dropdown"] resize set 625 400
+for_window [class="dropdown"] move position center
+for_window [class="dropdown"] move scratchpad
+exec --no-startup-id $term -c dropdown
 
-for_window [window_role="htop"] floating enable
-for_window [window_role="htop"] move position center
-for_window [window_role="htop"] move scratchpad
-exec --no-startup-id $term -r htop -e htop
+for_window [class="htop"] floating enable
+for_window [class="htop"] move position center
+for_window [class="htop"] move scratchpad
+exec --no-startup-id $term -c htop -e htop
 
-for_window [window_role="cmus"] floating enable
-for_window [window_role="cmus"] move position center
-for_window [window_role="cmus"] move scratchpad
-exec --no-startup-id $term -r cmus -e cmus
+for_window [class="calculator"] floating enable
+for_window [class="calculator"] move position center
+for_window [class="calculator"] move scratchpad
+exec --no-startup-id $term -c calculator -e R
 
 
 ###---Basic Bindings---###
-bindsym $mod+Return exec --no-startup-id termite
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+Shift+Return exec --no-startup-id $term -c dropdown
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
@@ -71,7 +72,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym Print exec scrot -u "$HOME/images/screenshots/%Y-%m-%d_%H-%M-%S.png" && notify-send Screenshot "Saved to ~/images/screenshots"
 bindsym Shift+Print --release exec notify-send Screenshot "Please select area" && exec scrot -s "$HOME/images/screenshots/%Y-%m-%d_%H-%M-%S.png" && notify-send Screenshot "Saved to ~/images/screenshots"
 
-bindsym $mod+grave [window_role="dropdown"] scratchpad show; move position center
+bindsym $mod+grave [class="dropdown"] scratchpad show; move position center
 
 
 ###---Letter Key bindings---###
@@ -105,7 +106,7 @@ bindsym $mod+o             resize grow width 1 px or 5 ppt
 bindsym $mod+p             gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+p       gaps inner current set 15; gaps outer current set 15
 
-bindsym $mod+a             exec $term -e qalc
+bindsym $mod+a             [class="calculator"] scratchpad show; move position center
 bindsym $mod+Shift+a       floating enable; resize set 320 px 180 px; sticky enable; move window to position 1045 px 0 px
 
 bindsym $mod+s             gaps inner current plus 5
@@ -117,8 +118,8 @@ bindsym $mod+Shift+d       exec --no-startup-id "~/.config/i3/vlc-from-clipboard
 bindsym $mod+f             scratchpad show
 bindsym $mod+Shift+f       move scratchpad
 
-bindsym $mod+g             exec $term -e /home/anthony/.screenlayout/regular.sh
-bindsym $mod+Shift+g       exec $term -e /home/anthony/.screenlayout/work.sh
+bindsym $mod+g             exec $term -e /home/anthony/dotfiles/screen_configs/laptop.sh
+bindsym $mod+Shift+g       exec $term -e /home/anthony/dotfiles/screen_configs/work.sh
 
 bindsym $mod+h             focus left
 bindsym $mod+Shift+h       move left 1px
@@ -139,15 +140,16 @@ bindsym $mod+z             gaps outer current plus 5
 bindsym $mod+Shift+z       gaps outer current minus 5
 
 bindsym $mod+x             gaps inner all set 15; gaps outer all set 15
-bindsym $mod+shift+x       exec ~/.config/i3/lock.sh ~/.config/i3/lock.png
+#bindsym $mod+shift+x       exec ~/.config/i3/lock.sh ~/.config/i3/lock.png
+bindsym $mod+Shift+x       exec betterlockscreen -l
 
-bindsym $mod+c             [window_role="cmus"] scratchpad show; move position center
+bindsym $mod+c             [class="cmus"] scratchpad show; move position center
 #bindsym $mod+Shift+c
 
 bindsym $mod+v             split v
 bindsym $mod+Shift+v       split h
 
-bindsym $mod+b             [window_role="htop"] scratchpad show; move position center
+bindsym $mod+b             [class="htop"] scratchpad show; move position center
 bindsym $mod+Shift+b       fullscreen toggle
 
 bindsym $mod+n             layout stacked
@@ -166,8 +168,8 @@ set $workspace3 "3 "
 set $workspace4 "4 "
 set $workspace5 "5 "
 set $workspace6 "6 ?"
-set $workspace7 "7 "
-set $workspace8 "8 "
+set $workspace7 "7 "
+set $workspace8 "8 "
 set $workspace9 "9 "
 set $workspace10 "10 "
 
@@ -195,9 +197,7 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-for_window [window_role="gimp-toolbox"] floating disable; move right
-for_window [window_role="gimp-dock"] floating disable; move left
-for_window [class="Vlc"] floating enable, resize set 554 312, move window to position 1335 689
+for_window [class="vlc"] floating enable, resize set 554 312, move window to position 1335 689
 assign [class="Chromium"] $workspace8
 assign [class="Slack"] $workspace9
 
@@ -206,31 +206,41 @@ workspace $workspace8 gaps outer 0
 
 
 ###---Colors---###
-set $border-color                    #928374
-set $bg-color                        #3c3836
-set $inactive-bg-color               #282828
-set $text-color                      #ebdbb2
-set $inactive-text-color             #a89984
-set $urgent-bg-color                 #cc241d
+#set $border-color                    #928374
+#set $bg-color                        #3c3836
+#set $inactive-bg-color               #282828
+#set $text-color                      #ebdbb2
+#set $inactive-text-color             #a89984
+#set $urgent-bg-color                 #cc241d
+
+set $border-color          #00ff00
+set $inactive-border-color #ff0000
+set $bg-color              #009fb7
+set $inactive-bg-color     #696773
+set $text-color            #b0c3bb
+set $inactive-text-color   #ffffff
+set $background-color #272727
 
 # window colors
 #                       border              background         text                 indicator
 client.focused          $border-color       $bg-color          $text-color          $inactive-text-color
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-text-color
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $inactive-text-color
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $inactive-text-color
+client.unfocused        $inactive-border-color  $inactive-bg-color $inactive-text-color $inactive-text-color
+client.focused_inactive $inactive-border-color  $inactive-bg-color $inactive-text-color $inactive-text-color
+client.urgent           $urgent-border-color    $urgent-bg-color   $text-color          $inactive-text-color
+client.background       $bg-color
 
 # bar
 bar {
 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top
 	colors {
-		background $bg-color
-		separator $border-color
+		background $background-color
+		separator $background-color
 		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		active_workspace   $bg-color          $bg-color          $inactive-text-color
-		inactive_workspace $bg-color          $bg-color          $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+		focused_workspace  $background-color          $background-color          $text-color
+		active_workspace   $background-color          $background-color          $inactive-text-color
+		inactive_workspace $background-color          $background-color          $inactive-text-color
+		urgent_workspace   $urgent-background-color   $urgent-background-color   $text-color
 	}
 
 	tray_output primary

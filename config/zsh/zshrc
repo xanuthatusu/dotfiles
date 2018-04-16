@@ -42,13 +42,13 @@ export SPOTIPY_REDIRECT_URI="https://mysite.com/callback/"
 export YOUTUBE_DEV_KEY="AIzaSyDS7h3GZKL5f-IjamrYzZsqDgO9XR96amE"
 
 [ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
-source /usr/share/nvm/init-nvm.sh
+#source /usr/share/nvm/init-nvm.sh
 
-source ~/.antigen/bundles/Valiev/almostontop/almostontop.plugin.zsh
+#source ~/.antigen/bundles/Valiev/almostontop/almostontop.plugin.zsh
 
 source ~/.fonts/*.sh
 
-eval "$(fasd --init auto)"
+#eval "$(fasd --init auto)"
 alias v='f -e nvim'
 
 function mkcd () {

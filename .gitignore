@@ -1,5 +1,6 @@
 *.DS_Store
 *.swp
+config/autostart
 config/.mono
 config/Code/*
 !config/Code/User
@@ -18,6 +19,7 @@ config/dconf/user
 config/easytag
 config/exercism.json
 config/fontforge
+config/fonts/.uuid
 config/gconf
 config/geogebra
 config/googlecl
