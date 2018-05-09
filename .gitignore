@@ -16,6 +16,7 @@ config/cmus/*
 !config/cmus/status_display_program.sh
 config/configstore
 config/dconf/user
+config/discord
 config/easytag
 config/exercism.json
 config/fontforge

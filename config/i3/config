@@ -197,9 +197,10 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-for_window [class="vlc"] floating enable, resize set 554 312, move window to position 1335 689
-assign [class="Chromium"] $workspace8
-assign [class="Slack"] $workspace9
+for_window [class="vlc"]  floating enable, resize set 554 312, move window to position 1335 689
+assign [class="Firefox"]  $workspace8
+assign [class="Chromium"] $workspace7
+assign [class="Slack"]    $workspace9
 
 workspace $workspace8 gaps inner 0
 workspace $workspace8 gaps outer 0
@@ -213,21 +214,20 @@ workspace $workspace8 gaps outer 0
 #set $inactive-text-color             #a89984
 #set $urgent-bg-color                 #cc241d
 
-set $border-color          #00ff00
-set $inactive-border-color #ff0000
-set $bg-color              #009fb7
-set $inactive-bg-color     #696773
-set $text-color            #b0c3bb
-set $inactive-text-color   #ffffff
-set $background-color #272727
+set $border-color                    #01adbe
+set $inactive-border-color           #696773
+set $text-color                      #cae5dd
+set $inactive-text-color             #bab9bf
+set $inactive-workspace-color        #696773
+set $background-color                #272727
 
 # window colors
-#                       border              background         text                 indicator
-client.focused          $border-color       $bg-color          $text-color          $inactive-text-color
-client.unfocused        $inactive-border-color  $inactive-bg-color $inactive-text-color $inactive-text-color
-client.focused_inactive $inactive-border-color  $inactive-bg-color $inactive-text-color $inactive-text-color
-client.urgent           $urgent-border-color    $urgent-bg-color   $text-color          $inactive-text-color
-client.background       $bg-color
+#                       border                  background              text                 indicator
+client.focused          $border-color           $border-color           $text-color          $inactive-text-color
+client.unfocused        $inactive-border-color  $inactive-border-color  $inactive-text-color $inactive-text-color
+client.focused_inactive $inactive-border-color  $inactive-border-color  $inactive-text-color $inactive-text-color
+client.urgent           $urgent-border-color    $urgent-border-color    $text-color          $inactive-text-color
+client.background       $border-color
 
 # bar
 bar {
@@ -236,10 +236,10 @@ bar {
 	colors {
 		background $background-color
 		separator $background-color
-		#                  border             background         text
+		#                  border                     background                 text
 		focused_workspace  $background-color          $background-color          $text-color
-		active_workspace   $background-color          $background-color          $inactive-text-color
-		inactive_workspace $background-color          $background-color          $inactive-text-color
+		active_workspace   $background-color          $background-color          $inactive-workspace-color
+		inactive_workspace $background-color          $background-color          $inactive-workspace-color
 		urgent_workspace   $urgent-background-color   $urgent-background-color   $text-color
 	}
 

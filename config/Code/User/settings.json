@@ -1,12 +1,13 @@
 // Place your settings in this file to overwrite the default settings
 {
     "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/bin/nvim",
     "vim.easymotion": true,
     "vim.leader": "<space>",
     "vim.hlsearch": true,
     "vim.foldfix": true,
     "editor.tabCompletion": true,
-    "editor.wordWrap": "on",
+    "editor.wordWrap": "off",
     "editor.wrappingIndent": "indent",
     "editor.renderLineHighlight": "gutter",
     "editor.cursorBlinking": "phase",
@@ -40,7 +41,7 @@
               "after": [],
               "commands": [
                   {
-                      "command": "workbench.action.showCommands",
+                      "command": "workbench.action.quickOpen",
                       "args": []
                   }
               ]
@@ -471,7 +472,8 @@
       ],
       "extensions.ignoreRecommendations": false,
       "workbench.iconTheme": "material-icon-theme",
-      "workbench.colorTheme": "Gruvbox Dark (Medium)",
+      "workbench.colorTheme": "Material Theme",
+      "workbench.editor.enablePreview": false,
       "sync.gist": "350b8665a02755c08b7221ba951c89b7",
       "sync.lastUpload": "2017-08-07T22:33:25.303Z",
       "sync.autoDownload": false,

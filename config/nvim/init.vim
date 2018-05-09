@@ -9,6 +9,7 @@ Plug 'alvan/vim-closetag'
 Plug 'chrisbra/colorizer'
 Plug 'ehamberg/vim-cute-python'
 Plug 'ervandew/supertab'
+Plug 'fatih/vim-go'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
@@ -154,7 +155,7 @@ au BufNewFile,BufRead config setf config
 " Plugin Options
 
 " Deoplete
-"let g:deoplete#enable_at_startup=1
+let g:deoplete#enable_at_startup=1
 
 " Colorizer
 let g:colorizer_auto_filetype='css,html'
