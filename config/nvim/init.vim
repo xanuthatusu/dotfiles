@@ -20,6 +20,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
+Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 Plug 'matze/vim-move'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -213,6 +214,7 @@ let vim_markdown_preview_github=1
 
 " Ale
 let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_column_always = 1
 
 " Nerd Tree
 map <leader>d :NERDTreeToggle<CR>
