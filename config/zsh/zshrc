@@ -45,6 +45,8 @@ export YOUTUBE_DEV_KEY="AIzaSyDS7h3GZKL5f-IjamrYzZsqDgO9XR96amE"
 
 #source ~/.antigen/bundles/Valiev/almostontop/almostontop.plugin.zsh
 
+source /usr/share/nvm/init-nvm.sh
+
 source ~/.fonts/*.sh
 
 #eval "$(fasd --init auto)"
@@ -53,6 +55,12 @@ alias v='f -e nvim'
 function mkcd () {
     mkdir $1
     cd $1
+}
+
+function vs () {
+    j $1
+    code .
+    exit
 }
 
 source /usr/share/autojump/autojump.zsh
