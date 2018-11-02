@@ -1,0 +1,17 @@
+# Custom Javascript snippets
+
+snippet af
+abbr    arrow_function
+options head
+  (${1:arguments}) => {
+    ${0:TARGET}
+  }
+
+snippet afs
+abbr    arrow_function_small
+options head
+  (${1:arguments}) => ${0:TARGET}
+
+snippet setTimeout-arrow
+options head
+  setTimeout(() => { ${0} }, ${1:500});
