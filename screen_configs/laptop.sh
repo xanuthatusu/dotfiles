@@ -1,2 +1,2 @@
 #!/bin/bash
-xrandr --output eDP1 --mode 1920x1080 --primary --output DP1 --off
+xrandr --output eDP1 --mode 1920x1080 --primary --output DP1 --off --output HDMI1 --off

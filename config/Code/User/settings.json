@@ -1,8 +1,12 @@
 // Place your settings in this file to overwrite the default settings
 {
+    "breadcrumbs.enabled": true,
+
     "editor.cursorBlinking": "phase",
-    "editor.fontFamily": "Fira Mono",
-    "editor.fontSize": 15,
+    // "editor.fontFamily": "Fira Mono",
+    "editor.fontFamily": "Dank Mono",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
     "editor.lineNumbers": "relative",
     "editor.matchBrackets": true,
     "editor.minimap.enabled": false,
@@ -49,13 +53,16 @@
     "vim.hlsearch": true,
     "vim.leader": "<space>",
     "vim.neovimPath": "/usr/bin/nvim",
-    "vim.useSystemClipboard": true,
+    "vim.useSystemClipboard": false,
+    "vim.statusBarColorControl": true,
 
+    "window.titleBarStyle": "custom",
     "window.zoomLevel": 0,
 
-    "workbench.colorTheme": "Material Theme",
+    "workbench.colorTheme": "Monokai Pro",
     "workbench.editor.enablePreview": false,
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.showTabs": false,
+    "workbench.iconTheme": "Monokai Pro Icons",
 
     "vim.normalModeKeyBindingsNonRecursive": [
         {

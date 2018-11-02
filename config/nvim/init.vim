@@ -7,13 +7,10 @@ call plug#begin("$HOME/.config/nvim/plugged")
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'chrisbra/colorizer'
-Plug 'ehamberg/vim-cute-python'
-Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
 Plug 'gregsexton/MatchTag'
-Plug 'honza/vim-snippets'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 Plug 'jiangmiao/auto-pairs'
@@ -23,24 +20,26 @@ Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 Plug 'leafgarland/typescript-vim'
 Plug 'mattn/emmet-vim'
 Plug 'matze/vim-move'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'SirVer/ultisnips'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'unblevable/quick-scope'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale'
-"Plug 'ying17zi/vim-live-latex-preview'
-Plug 'lervag/vimtex'
+Plug 'wellle/targets.vim'
 
 call plug#end()    " Required
 filetype on        " Required
@@ -67,6 +66,7 @@ set number
 set path+=**
 set scrolloff=5
 set shell=bash
+set showbreak=>\ 
 set showcmd
 set smartcase
 set wrap
@@ -74,32 +74,19 @@ set wrap
 " Tab stuff
 set smartindent
 set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 
-" Folding
-set debug=msg
-set foldmethod=expr
-set foldexpr=GetNormalFold(v:lnum)
-set foldlevelstart=20
-
-function! IndentLevel(lnum)
-     return indent(a:lnum) / &shiftwidth
-endfunction
-
-function! GetNormalFold(lnum)
-     if getline(a:lnum) =~? '\v^\s*$'
-          return '-1'
-     endif
-
-     return IndentLevel(a:lnum)
-endfunction
+"" Folding
+"set debug=msg
+"set foldmethod=syntax
+"set foldlevelstart=20
 
 " Persistent undo
 try
-     set undodir=~/.vim_runtime/temp_dirs/undodir
-     set undofile
+  set undodir=~/.vim_runtime/temp_dirs/undodir
+  set undofile
 catch
 endtry
 
@@ -118,13 +105,13 @@ colorscheme gruvbox
 "set colorcolumn=100
 call matchadd('ColorColumn', '\%100v', 100)
 hi SpecialKey ctermfg=66 guifg=#00cc00
-hi Normal guibg=NONE ctermbg=NONE " Transparency
+"hi Normal guibg=NONE ctermbg=NONE " Transparency
 
 " Custom keymaps
 " Ease of Use
 nnoremap j gj
 nnoremap k gk
-inoremap jk <ESC>
+"inoremap jk <ESC>
 nnoremap ss :wa<CR>
 vmap < <gv
 vmap > >gv
@@ -155,8 +142,34 @@ au BufNewFile,BufRead config setf config
 
 " Plugin Options
 
+" Auto Pairs
+let g:AutoPairsFlyMode = 1
+
 " Deoplete
+let g:deoplete#auto_complete_start_length=1
 let g:deoplete#enable_at_startup=1
+let g:deoplete#enable_smart_case=1
+
+" Neosnippets
+let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+function! CompletionTab()
+  if neosnippet#expandable_or_jumpable()
+    return "\<Plug>(neosnippet_expand_or_jump)"
+  elseif pumvisible()
+    return "\<C-n>"
+  elseif getline('.')[col('.') - 1] =~# '["\]'')}]'
+    return "\<Right>"
+  else
+    return "\<TAB>"
+  endif
+endfunction
+
+imap <expr><Tab> CompletionTab()
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " Colorizer
 let g:colorizer_auto_filetype='css,html'
@@ -168,11 +181,6 @@ let g:airline_powerline_fonts=1
 "let g:airline_theme='base16_spacemacs'
 "let g:airline_theme='hybridline'
 let g:airline_theme='gruvbox'
-
-"let g:airline_left_sep = "\uE0B8"
-"let g:airline_left_alt_sep = "\uE0B9"
-"let g:airline_right_sep = "\uE0BA"
-"let g:airline_right_alt_sep = "\uE0BB"
 
 function! AirlineInit()
      let g:airline_section_a = airline#section#create(["mode", " ", "branch"])
@@ -192,13 +200,8 @@ nnoremap <silent> <leader>b :Buffer<CR>
 " Vim move
 let g:move_key_modifier='C'
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardsTrigger="<S-tab>"
-
 " SuperTab
-let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Indent Guides
 let g:indent_guides_guide_size=1
@@ -215,9 +218,37 @@ let vim_markdown_preview_github=1
 " Ale
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_column_always = 1
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_linters = {
+\   'typescript': ['eslint', 'tsserver'],
+\}
+" Disable linting on old, terrible javascript files
+let g:ale_pattern_options = {
+\   '.*assets-checkout/.*\.js': {'ale_enabled': 0},
+\}
 
 " Nerd Tree
-map <leader>d :NERDTreeToggle<CR>
+"map <leader>d :NERDTreeToggle<CR>
+
+"" NERDTress File highlighting
+"function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ "exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ "exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+"endfunction
+
+"call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+"call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+"call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+"call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+"call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+"call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+"call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+"call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " Vimwiki
 let g:vimwiki_list = [{'path': '~/.config/nvim/vimwiki/', 'path_html': '/tmp/vimwiki_html'}]

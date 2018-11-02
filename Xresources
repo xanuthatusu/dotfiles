@@ -15,3 +15,5 @@ rofi.fullscreen: true
 rofi.padding: 300
 rofi.line-margin: 9
 rofi.fixed-num-lines: true
+
+Xcursor.size: 16

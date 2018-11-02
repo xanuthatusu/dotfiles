@@ -17,10 +17,13 @@ alias vim="nvim"
 alias git="hub"
 alias up="cd ../"
 alias bell="echo -e '\a'"
+alias ls="ls --group-directories-first --color=auto -1"
 
 alias rangercd="ranger --choosedir=$HOME/.config/rangerdir; cd $(cat $HOME/.config/rangerdir)"
 
 alias poly="rlwrap poly"
+
+alias hdmi="xrandr --output HDMI1 --auto --primary --output eDP1 --auto --pos 3840x540"
 
 source /etc/environment
 
@@ -30,7 +33,7 @@ export EDITOR="nvim"
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/home/anthony/.config/nvim/plugged/vim-live-latex-preview/bin:$PATH
-export PATH=/home/anthony/.gem/ruby/2.4.0/bin:$PATH
+export PATH=/home/anthony/.gem/ruby/2.5.0/bin:$PATH
 export PATH=/home/anthony/.nvm/versions/node/v6.11.1/bin:$PATH
 export PATH=/home/anthony/.local/bin:$PATH
 export PATH=/home/anthony/go/bin:$PATH
@@ -64,3 +67,10 @@ function vs () {
 }
 
 source /usr/share/autojump/autojump.zsh
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh

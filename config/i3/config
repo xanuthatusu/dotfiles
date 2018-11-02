@@ -21,10 +21,10 @@ font pango:System San Francisco Display 9
 #font pango:Museo Sans 9
 gaps inner 15
 gaps outer 15
-set $browser firefox
+set $browser chromium
 set $mod Mod4
-#set $term termite
-set $term st
+set $term termite
+#set $term st
 
 ###---Starting External Scripts---###
 exec --no-startup-id compton -f --config /etc/xdg/compton.conf
@@ -46,25 +46,29 @@ bindsym Menu exec --no-startup-id xmodmap -e 'keycode 135 = Super_R'
 
 ###---Dropdown/Scratchpad Windows---###
 for_window [class="dropdown"] floating enable
-for_window [class="dropdown"] resize set 625 400
+for_window [class="dropdown"] resize set 950 540
 for_window [class="dropdown"] move position center
 for_window [class="dropdown"] move scratchpad
-exec --no-startup-id $term -c dropdown
+#exec --no-startup-id $term -c dropdown
+exec --no-startup-id $term --class dropdown
 
 for_window [class="htop"] floating enable
 for_window [class="htop"] move position center
 for_window [class="htop"] move scratchpad
-exec --no-startup-id $term -c htop -e htop
+#exec --no-startup-id $term -c htop -e htop
+exec --no-startup-id $term -class htop -e htop
 
 for_window [class="calculator"] floating enable
 for_window [class="calculator"] move position center
 for_window [class="calculator"] move scratchpad
-exec --no-startup-id $term -c calculator -e R
+#exec --no-startup-id $term -c calculator -e R
+exec --no-startup-id $term --class calculator -e R
 
 
 ###---Basic Bindings---###
 bindsym $mod+Return exec --no-startup-id $term
-bindsym $mod+Shift+Return exec --no-startup-id $term -c dropdown
+#bindsym $mod+Shift+Return exec --no-startup-id $term -c dropdown
+bindsym $mod+Shift+Return exec --no-startup-id $term --class dropdown
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
@@ -207,19 +211,20 @@ workspace $workspace8 gaps outer 0
 
 
 ###---Colors---###
-#set $border-color                    #928374
-#set $bg-color                        #3c3836
-#set $inactive-bg-color               #282828
-#set $text-color                      #ebdbb2
-#set $inactive-text-color             #a89984
-#set $urgent-bg-color                 #cc241d
+# Gruvbox
+set $border-color                    #458488
+set $inactive-border-color           #3c3836
+set $text-color                      #ebdbb2
+set $inactive-text-color             #a89984
+set $urgent-bg-color                 #cc241d
+set $background-color                #3c3836
 
-set $border-color                    #01adbe
-set $inactive-border-color           #696773
-set $text-color                      #cae5dd
-set $inactive-text-color             #bab9bf
-set $inactive-workspace-color        #696773
-set $background-color                #272727
+#set $border-color                    #01adbe
+#set $inactive-border-color           #696773
+#set $text-color                      #cae5dd
+#set $inactive-text-color             #bab9bf
+#set $inactive-workspace-color        #696773
+#set $background-color                #272727
 
 # window colors
 #                       border                  background              text                 indicator
