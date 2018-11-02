@@ -5,6 +5,10 @@ config/chromium
 config/cmus/*
 !config/cmus/cmus_desktop_notify.py
 !config/cmus/status_display_program.sh
+config/Code - OSS/*
+!config/Code - OSS/User
+config/Code - OSS/User/sync*
+config/Code - OSS/User/workspaceStorage/*
 config/Code/*
 !config/Code/User
 config/Code/User/sync*
