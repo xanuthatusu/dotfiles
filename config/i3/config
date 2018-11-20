@@ -86,59 +86,59 @@ bindsym $mod+Shift+q       kill
 bindsym $mod+w             exec --no-startup-id $browser
 #bindsym $mod+Shift+w
 
-bindsym $mod+e             layout toggle split
-bindsym $mod+Shift+e       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+f             scratchpad show
+bindsym $mod+Shift+f       move scratchpad
 
-bindsym $mod+r             exec $term -e ranger
-bindsym $mod+Shift+r       restart
+bindsym $mod+p             gaps inner current set 0; gaps outer current set 0
+bindsym $mod+Shift+p       gaps inner current set 15; gaps outer current set 15
 
-bindsym $mod+t             exec $term -e mutt
-#bindsym $mod+Shift+t
+bindsym $mod+g             exec $term -e /home/anthony/dotfiles/screen_configs/laptop.sh
+bindsym $mod+Shift+g       exec $term -e /home/anthony/dotfiles/screen_configs/work.sh
+
+bindsym $mod+j             focus down
+bindsym $mod+Shift+j       move down 1px
+
+bindsym $mod+l             focus right
+bindsym $mod+Shift+l       move right 1px
+
+bindsym $mod+u             resize grow height 1 px or 5 ppt
+#bindsym $mod+Shift+u
 
 bindsym $mod+y             resize shrink width 1 px or 5 ppt
 #bindsym $mod+Shift+y resize shrink width 20 px or 20 ppt
 
-bindsym $mod+u             resize grow height 1 px or 5 ppt
-#bindsym $mod+Shift+u
+bindsym $mod+semicolon     focus parent
+bindsym $mod+Shift+colon   focus child
+
+bindsym $mod+a             [class="calculator"] scratchpad show; move position center
+bindsym $mod+Shift+a       floating enable; resize set 320 px 180 px; sticky enable; move window to position 1045 px 0 px
+
+bindsym $mod+r             exec $term -e ranger
+bindsym $mod+Shift+r       restart
+
+bindsym $mod+s             gaps inner current plus 5
+bindsym $mod+Shift+s       gaps inner current minus 5
+
+bindsym $mod+t             exec $term -e mutt
+#bindsym $mod+Shift+t
+
+bindsym $mod+d             exec rofi -show run
+bindsym $mod+Shift+d       exec --no-startup-id "~/.config/i3/vlc-from-clipboard.sh"
+
+bindsym $mod+h             focus left
+bindsym $mod+Shift+h       move left 1px
+
+bindsym $mod+n             layout stacked
+bindsym $mod+Shift+n       layout tabbed
+
+bindsym $mod+e             layout toggle split
+bindsym $mod+Shift+e       exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym $mod+i             resize shrink height 1 px or 5 ppt
 #bindsym $mod+Shift+i
 
 bindsym $mod+o             resize grow width 1 px or 5 ppt
 #bindsym $mod+Shift+o
-
-bindsym $mod+p             gaps inner current set 0; gaps outer current set 0
-bindsym $mod+Shift+p       gaps inner current set 15; gaps outer current set 15
-
-bindsym $mod+a             [class="calculator"] scratchpad show; move position center
-bindsym $mod+Shift+a       floating enable; resize set 320 px 180 px; sticky enable; move window to position 1045 px 0 px
-
-bindsym $mod+s             gaps inner current plus 5
-bindsym $mod+Shift+s       gaps inner current minus 5
-
-bindsym $mod+d             exec rofi -show run
-bindsym $mod+Shift+d       exec --no-startup-id "~/.config/i3/vlc-from-clipboard.sh"
-
-bindsym $mod+f             scratchpad show
-bindsym $mod+Shift+f       move scratchpad
-
-bindsym $mod+g             exec $term -e /home/anthony/dotfiles/screen_configs/laptop.sh
-bindsym $mod+Shift+g       exec $term -e /home/anthony/dotfiles/screen_configs/work.sh
-
-bindsym $mod+h             focus left
-bindsym $mod+Shift+h       move left 1px
-
-bindsym $mod+j             focus down
-bindsym $mod+Shift+j       move down 1px
-
-bindsym $mod+k             focus up
-bindsym $mod+Shift+k       move up 1px
-
-bindsym $mod+l             focus right
-bindsym $mod+Shift+l       move right 1px
-
-bindsym $mod+semicolon     focus parent
-bindsym $mod+Shift+colon   focus child
 
 bindsym $mod+z             gaps outer current plus 5
 bindsym $mod+Shift+z       gaps outer current minus 5
@@ -147,7 +147,7 @@ bindsym $mod+x             gaps inner all set 15; gaps outer all set 15
 #bindsym $mod+shift+x       exec ~/.config/i3/lock.sh ~/.config/i3/lock.png
 bindsym $mod+Shift+x       exec betterlockscreen -l
 
-bindsym $mod+c             [class="cmus"] scratchpad show; move position center
+#bindsym $mod+c
 #bindsym $mod+Shift+c
 
 bindsym $mod+v             split v
@@ -156,8 +156,8 @@ bindsym $mod+Shift+v       split h
 bindsym $mod+b             [class="htop"] scratchpad show; move position center
 bindsym $mod+Shift+b       fullscreen toggle
 
-bindsym $mod+n             layout stacked
-bindsym $mod+Shift+n       layout tabbed
+bindsym $mod+k             focus up
+bindsym $mod+Shift+k       move up 1px
 
 bindsym $mod+m             move workspace to output right
 #bindsym $mod+Shift+m
@@ -202,12 +202,9 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 for_window [class="vlc"]  floating enable, resize set 554 312, move window to position 1335 689
-assign [class="Firefox"]  $workspace8
+#assign [class="Firefox"]  $workspace8
 assign [class="Chromium"] $workspace7
 assign [class="Slack"]    $workspace9
-
-workspace $workspace8 gaps inner 0
-workspace $workspace8 gaps outer 0
 
 
 ###---Colors---###
