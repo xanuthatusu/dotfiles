@@ -1,0 +1,6 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in 
+  1) notify-send "$(cal)" && date '+  %a, %b. %e   %l:%M:%S' ;;
+  *) date '+  %a, %b. %e   %l:%M:%S' ;;
+esac

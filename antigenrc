@@ -1,5 +1,3 @@
-export POWERLEVEL9K_MODE="nerdfont-complete"
-export POWERLEVEL9K_INSTALLATION_PATH=/home/anthony/.antigen/bundles/bhilburn/powerlevel9k/powerlevel9k.zsh-theme
 source /home/anthony/.config/zsh/antigen.zsh
 
 antigen use oh-my-zsh
@@ -9,6 +7,7 @@ antigen bundle heroku
 antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found
+antigen bundle vi-mode
 
 antigen bundle zdharma/fast-syntax-highlighting
 
@@ -17,11 +16,12 @@ antigen bundle peterhurford/git-aliases.zsh
 #antigen bundle Valiev/almostontop
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle ascii-soup/zsh-url-highlighter
-antigen bundle zuxfoucault/colored-man-pages_mod
+#antigen bundle zuxfoucault/colored-man-pages_mod
 
 antigen bundle pass
 
 #antigen theme bhilburn/powerlevel9k powerlevel9k
-antigen theme molovo/filthy
+#antigen theme molovo/filthy
+antigen theme $HOME/personal/filthy/filthy.zsh --no-local-clone
 
 antigen apply
