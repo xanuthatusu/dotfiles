@@ -1,15 +1,10 @@
+source /home/anthony/.antigenrc
 export TERM="xterm-256color"
-source ~/.antigenrc
 
 ENABLE_CORRECTION="true"
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER=""
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-
-alias startvpn="sudo openvpn --config /etc/openvpn/client/US_West.conf --writepid /run/openvpn-client/west.pid --daemon"
+alias startvpn="sudo openvpn --writepid /run/openvpn-client/mullvad.pid --cd $HOME/mullvad_config_linux_us_slc --config mullvad_us_slc.conf --daemon"
+#alias startvpn="sudo openvpn --config /etc/openvpn/client/US_West.conf --writepid /run/openvpn-client/west.pid --daemon"
 alias stopvpn="sudo killall openvpn"
 alias restartvpn="stopvpn;startvpn"
 
@@ -48,7 +43,7 @@ export YOUTUBE_DEV_KEY="AIzaSyDS7h3GZKL5f-IjamrYzZsqDgO9XR96amE"
 
 #source ~/.antigen/bundles/Valiev/almostontop/almostontop.plugin.zsh
 
-source /usr/share/nvm/init-nvm.sh
+#source /usr/share/nvm/init-nvm.sh
 
 source ~/.fonts/*.sh
 
@@ -68,9 +63,11 @@ function vs () {
 
 source /usr/share/autojump/autojump.zsh
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /home/anthony/.nvm/versions/node/v8.4.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+bindkey -v
+export KEYTIMEOUT=1
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PYENV_ROOT="$HOME/.pyenv"

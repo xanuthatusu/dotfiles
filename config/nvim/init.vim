@@ -7,6 +7,7 @@ call plug#begin("$HOME/.config/nvim/plugged")
 Plug 'airblade/vim-gitgutter'
 Plug 'alvan/vim-closetag'
 Plug 'chrisbra/colorizer'
+Plug 'digitaltoad/vim-pug'
 Plug 'fatih/vim-go'
 Plug 'flazz/vim-colorschemes'
 Plug 'godlygeek/tabular'
@@ -146,9 +147,11 @@ au BufNewFile,BufRead config setf config
 let g:AutoPairsFlyMode = 1
 
 " Deoplete
-let g:deoplete#auto_complete_start_length=1
+call deoplete#custom#option({'auto_complete_start_length': 3})
+call deoplete#custom#option({'enable_smart_case': 1})
 let g:deoplete#enable_at_startup=1
-let g:deoplete#enable_smart_case=1
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/usr/bin/python2'
 
 " Neosnippets
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
@@ -219,8 +222,11 @@ let vim_markdown_preview_github=1
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_javascript_eslint_use_global = 1
+"let g:ale_cpp_clangtidy_options = '-x c++'
+"let g:ale_cpp_clangtidy_checks = ['modernize-use-trailing-return-type']
 let g:ale_linters = {
 \   'typescript': ['eslint', 'tsserver'],
+\   'cpp': ['clang'],
 \}
 " Disable linting on old, terrible javascript files
 let g:ale_pattern_options = {
